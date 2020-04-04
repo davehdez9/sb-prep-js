@@ -23,19 +23,19 @@ const numbers = {
   100: 'one hundred',
   16: 'sixteen'
 };
-// console.log(number.100); //unexpexted number if wwe put a number after the dot
+// console.log(number.100); //unexpected number if wwe put a number after the dot
 
-// const palette = {
-//   red: '#eb4d4b',
-//   yellow: '#f9ca24',
-//   blue: '#30336b'
-// };
+const palette = {
+  red: '#eb4d4b',
+  yellow: '#f9ca24',
+  blue: '#30336b'
+};
 
-// console.log(palette.red);
-// console.log(palette['blue']);
+console.log(palette.red);
+console.log(palette['blue']);
 
-// let color = 'yellow';
-// console.log(palette[color]);
+let color = 'yellow';
+console.log(palette[color]);
 
 // D. UPDATING & ADDING PROPERTIES --------------------------------
 
@@ -99,11 +99,11 @@ const game = {
 
 // E. OBJECTS & REFERENCE TYPES --------------------------
 
-const palette = {
-  red: '#eb4d4b',
-  yellow: '#f9ca24',
-  blue: '#30336b'
-};
+// const palette = {
+//   red: '#eb4d4b',
+//   yellow: '#f9ca24',
+//   blue: '#30336b'
+// };
 
 const palette2 = palette;
 palette2.green = '#ebf876';

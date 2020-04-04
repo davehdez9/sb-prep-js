@@ -193,8 +193,6 @@ x == 7 || (x === 3 && x > 10); // every symbol has their own precedence
 
 // G. The Switch Statement ----------------------------------------------
 
-let day = 1;
-
 // if (day === 1) {
 //   console.log('MONDAY');
 // } else if (day === 2) {
@@ -213,7 +211,9 @@ let day = 1;
 //   console.log('INVALID DAY');
 // }
 
-//Example with Switch the las code with If else statement
+// //Example with Switch the las code with If else statement
+let day = 7;
+
 switch (day) {
   case 1:
     console.log('MONDAY');
