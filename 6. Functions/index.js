@@ -210,6 +210,108 @@
 //   return !tooShort && !hasSpace && !tooSimilar;
 // }
 
-// 8. Function Challenge 2 - Average
-// 9. Function Challenge 3 - Pangrams
-// 10. Function Challenge 4 - Get Playing Card
+//---------- 8. Function Challenge 2 - Average
+
+// Write a function to find the average value in an array of numbers
+// avg([0,50]) //25
+// avg([75,76,80,95,100]) //85.2
+
+// function avg(arr) {
+//   let total = 0;
+//loop over each num
+//   for (let num of arr) {
+//add them together
+//     total += num;
+//   }
+//divide by number of nums
+//   return total / arr.length;
+// }
+
+//---------- 9. Function Challenge 3 - Pangrams
+
+// a pangram is a sentences that contains every letter of the alphabet, like;
+// "The quick brown fox jumps over the lazy dog"
+
+// Write a function call is pangram, which check to see if a given sentecens contains every letter of the alphabet. Make sure you ignore string casing!
+
+// isPangram('the five boxing wizards jump quickly');
+// isPangram('the five boxing wizards jump quick');
+
+// Ex 1 ->
+// function isPangram(sentence) {
+//   let lowerCased = sentence.toLowerCase();
+//   for (let char of 'abcdefghijklmnopqrstuvwxyz') {
+//     if (lowerCased.indexOf(char) === -1) {
+//       return false;
+//     }
+//   }
+//   return true;
+// }
+
+// Ex 2 ->
+// function isPangram(sentence) {
+//   let lowerCased = sentence.toLowerCase();
+//   for (let char of 'abcdefghijklmnopqrstuvwxyz') {
+//     if (!lowerCased.includes(char)) {
+//       return false;
+//     }
+//   }
+//   return true;
+// }
+
+//---------- 10. Function Challenge 4 - Get Playing Card
+
+// Write a getCard() function which returns a random playing card object, like:
+// {
+// 	value: 'K'
+// 	suit: 'clubs'
+// }
+// Pick a random value from:
+// -----1,2,3,4,5,6,7,8,9,10,J,Q,K,A
+// Pick a random suit from:
+// -----clubs, spaced, hearts, diamons
+// return both in an object
+
+function pick(arr) {
+  //return random element from arr
+  const idx = Math.floor(Math.random() * arr.length);
+  return arr[idx];
+}
+
+function getCard() {
+  const values = [
+    '1',
+    '2',
+    '3',
+    '4',
+    '5',
+    '6',
+    '7',
+    '8',
+    '9',
+    '10',
+    'J',
+    'Q',
+    'K',
+    'A',
+  ];
+
+  // option  1 ->
+  //   const idx = Math.floor(Math.random() * values.length);
+  //   const value = values[idx];
+
+  //option 1.1 ->
+  //   const value = pick(values);
+
+  const suits = ['clubs', 'spades', 'hearts', 'diamonds'];
+
+  //option 2
+  //   const suitIdx = Math.floor(Math.random() * suits.length);
+  //   const suit = suits[suitIdx];
+
+  // option 2.1
+  //   const suit = pick(suits);
+
+  //   return { value: value, suit: suit };
+  return { value: pick(values), suit: pick(suits) }; // other option of return
+}
