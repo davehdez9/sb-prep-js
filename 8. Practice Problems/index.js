@@ -346,7 +346,7 @@
 
 // secondArr; // [5, 2, 1, 6, 20]
 
-// ---------- 012. Fundamentals: Pop
+// ---------- 013. Fundamentals: Pop
 
 // Write a function called pop which accepts an array.
 
@@ -355,34 +355,501 @@
 // Do not use the built in Array.pop() function!
 
 // function pop(arr) {
-//   for (let i = arr.length - 1; i >= 0; i--) {
-//     const newArray = arr.slice(0, -1);
-//     console.log(`array: ${newArray}`);
-//     const removeArray = newArray;
-//     if (arr.length < 1 || arr === undefined) {
-//       return undefined;
-//     }
-//     return arr[i];
+//   if (arr.length === 0) {
+//     return undefined;
 //   }
+//   let lastValue = arr[arr.length - 1];
+//   arr = arr.splice(-1, 1);
+//   return lastValue;
 // }
 
-function pop(arr) {
+// Teacher Example
+// function pop(arr) {
+//   if (arr.length === 0) {
+//     return; // default function return value is undefined
+//   }
+//stored the last value
+//   let finalVar = arr[arr.length - 1];
+// decreasing the length will automatically shrink the array
+//   arr.length = arr.length - 1;
+
+//   return finalVar;
+// }
+
+// Examples:
+
+// var arr = [1, 2, 3, 4];
+// pop(arr); // 4
+// arr; // [1, 2, 3]
+
+// var emptyArr = [];
+// pop(emptyArr); // undefined
+// emptyArr.length; // 0
+
+// ---------- 014. Fundamentals: unshift
+
+// Write a function called unshift which accepts an array and a value and adds the value to the beginning of the array.
+
+// This function should return the new length of the array.
+
+// Do not use the built in Array.unshift() function!
+
+// function unshift(arr, val) {
+//add value beginning of the array
+//   let newArray = [val, ...arr];
+//   arr = arr.slice();
+
+//   return newArray.length; //new length of the array
+// }
+
+// Solution
+// function unshift(arr, val) {
+//   debugger;
+//   for (i = arr.length - 1; i >= 0; --i) {
+//     arr[i + 1] = arr[i];
+//   }
+//   arr[0] = val;
+//   return arr.length;
+// }
+
+//Model Solution
+// function unshift(arr, val) {
+//   debugger;
+// starting from the end of the array,
+//each item has to be moved one to account for the new element at the beginning
+//   for (let i = arr.length; i >= 0; i--) {
+//     arr[i] = arr[i - 1];
+//   }
+//   arr[0] = val;
+//   return arr.length;
+// }
+
+// Examples:
+
+// var arr = [1, 2, 3];
+// unshift(arr, 0); // 4
+// arr; // [0, 1, 2, 3]
+
+// unshift([4, 5, 6], 10); // 4
+
+// ---------- 015. Fundamentals: shift
+
+// Write a function called shift which accepts an array and removes the first value in the array and then returns the value removed. It should return undefined if the array is empty.
+
+// Do not use the built in shift function!
+
+//My solution
+function shift(arr) {
+  // return undefined if the array is empty
   if (arr.length === 0) {
     return undefined;
   }
-  let lastValue = arr[arr.length - 1];
-  arr = arr.splice(-1, 1);
-  // console.log('removed?: ', arr);
-  // console.log(lastValue);
-  return lastValue;
+  let firstValue = arr[0];
+  //remove first value in the array
+  arr = arr.splice(0, 1);
+
+  //return value removed
+  return firstValue;
+}
+
+// Model Solution
+function shift(arr) {
+  if (arr.length === 0) {
+    return;
+  }
+  let firstVal = arr[0];
+  //Have to move up each element to account for missing first element
+  for (let i = 1; i < arr.length; i++) {
+    arr[i - 1] = arr[i];
+  }
+  arr.length = arr.length - 1;
+  return firstVal;
 }
 
 // Examples:
 
-var arr = [1, 2, 3, 4];
-pop(arr); // 4
-arr; // [1, 2, 3]
+var arr = ['a', 'b', 'c'];
+// shift(arr); // "a"
+// arr; // ["b","c"]
 
-var emptyArr = [];
-pop(emptyArr); // undefined
-emptyArr.length; // 0
+// var emptyArr = [];
+// shift(emptyArr); // undefined
+// emptyArr.length; //
+
+// ---------- 016. Fundamentals: reverse
+
+// Write a function called reverse, which accepts an array and returns the same array with all of the values reversed. In other words, do not solve this by creating a new array.
+
+// Note: returning the same array is called an in-place operation, since no additional space is used. https://en.wikipedia.org/wiki/In-place_algorithm
+
+// Do not use the built in Array.reverse() function!
+
+// function reverse(arr) {
+//   for (var i = 0; i <= Math.floor((arr.length - 1) / 2); i++) {
+//     let el = arr[i];
+//     arr[i] = arr[arr.length - 1 - i];
+//     arr[arr.length - 1 - i] = el;
+//   }
+//   return arr;
+//   // return same array with all the values reversed
+// }
+
+// Model Solution
+// /*
+//  * swap each value in the array starting from the
+//  *  beginning and going to the middle. Note the middle element
+//  *  itself does not need to be swapped
+//  */
+
+// function reverse(arr) {
+//   // debugger;
+//   // midpoint is length / 2, floored to account for odd lengths
+//   let middle = Math.floor(arr.length / 2);
+
+//   for (let i = 0; i < middle; i++) {
+//     let end = arr.length - 1;
+//     //make a temporary variable to store a value closer to the beginning
+//     let temp = arr[i];
+//     // swap the value closer to the beginning with a value the same distance from the end
+//     arr[i] = arr[end - i];
+//     //swap the value closer to the end with the temporary variable
+//     arr[end - i] = temp;
+//   }
+//   return arr;
+// }
+
+// Examples:
+
+// reverse([5, 4, 3, 2, 1]); // [1, 2, 3, 4, 5]
+// reverse([]); // []
+
+// var arr = [1, 2, 3];
+// reverse(arr); // [3, 2, 1]
+// arr; // [3, 2, 1]
+
+// ---------- 017. Fundamentals: max
+
+// Write a function called max, which accepts an array and returns the highest value.
+
+// Do not use the built-in Math.max() function!
+
+// const max = (arr) => {
+//   let highest = 0;
+//   for (let i = 0; i < arr.length; i++) {
+//     if (arr[i] > highest) {
+//       highest = arr[i];
+//     }
+//   }
+//   return highest;
+// };
+
+// model solution
+
+// function max(arr) {
+// we can use the first element as the default maximum
+//   let maximum = arr[0];
+// then if we encounter a larger element in the rest of the array, replace the value. Note we can start our loop at index 1
+//   for (var i = 1; i < arr.length; i++) {
+//     if (arr[i] > maximum) {
+//       maximum = arr[i];
+//     }
+//   }
+//   return maximum;
+// }
+// // Examples:
+
+// max([5, 1, 4, 7, 1, 2]); // 7
+// max([3, 4, 12, 1, 8]); // 12
+// max([-1, 6, 3, 2.2, -10, -4]); // 6
+
+// ---------- 018. Fundamentals: min
+
+// Write a function called min, which accepts an array of numbers and returns the lowest value.
+
+// Do note use the built-in Math.min() function!
+// function min(arr) {
+//   let minimum = arr[0];
+//   for (let i = 0; i < arr.length; i++) {
+//     if (arr[i] < minimum) {
+//       minimum = arr[i];
+//     }
+//   }
+//   return minimum;
+//   // return the lowest value
+// }
+
+// // Examples:
+
+// min([5, 1, 4, 7, 1, 2]); // 1
+// min([-1, 6, 3, 2.2, -10, -4]); // -10
+
+// ---------- 019. Fundamentals: slice
+
+// Write a function called slice, which accepts an array, and two numbers.
+
+// The function should return a new array with the elements starting at the index of the first number and going until the index of the second number.
+
+// If a third parameter is not passed to the function, it should slice until the end of the array by default.
+
+// If the third parameter is greater than the length of the array, it should slice until the end of the array.
+
+// Do not use the built in Array.slice() function!
+
+// My Solution
+// function slice(arr, num1, num2) {
+//   // debugger;
+//   let newArr = [];
+
+//   // check to see if num2 is greater than length of array, OR if num2 is undefined:
+//   if (num2 > arr.length || num2 === undefined) {
+//     // if true, loop through array, start loop at index of num1, end loop and last element of the array (when i < arr.length)
+//     for (let i = num1; i < arr.length; i++) {
+//       // push all elements in loop to newArr
+//       newArr.push(arr[i]);
+//     }
+
+//     // check to see if num2 is less than length of array AND if num2 is not undefined
+//   } else if (num2 < arr.length && num2 !== undefined) {
+//     // if true, start loop at index of num1, end loop at index of num2
+//     for (let i = num1; i < num2; i++) {
+//       // push all elements in loop to newArr
+//       newArr.push(arr[i]);
+//     }
+//   }
+
+//   return newArr;
+// }
+
+// //Model Solution
+// function slice(arr, start, end) {
+//   let newArr = [];
+
+//   if (end > arr.length || end === undefined) {
+//     end = arr.length;
+//   }
+
+//   for (let i = start; i < end; i++) {
+//     // push all elements in loop to newArr
+//     newArr.push(arr[i]);
+//   }
+
+//   return newArr;
+// }
+
+// Examples: slice([1, 2, 3, 4, 5], 0, 2); // [1, 2]
+// slice([1, 2, 3, 4, 5], 2, 4); // [3, 4]
+// slice([1, 2, 3, 4, 5], 2); // [3, 4, 5]
+// slice([1, 2, 3, 4, 5], 2, 10); // [3, 4, 5]
+
+// ---------- 020. Fundamentals: SquareEvenNumbers
+// Write a function called squareEvenNumbers which accepts an array and returns the sum of all of the even numbers in the array squared.
+
+//My Solution
+// function squareEvenNumbers(array) {
+//   debugger;
+//   let sum = 0;
+
+//   for (let i = 0; i < array.length; i++) {
+//     if (array[i] % 2 === 0) {
+//       sum += Math.pow(array[i], 2);
+//     }
+//   }
+
+//   return sum;
+// }
+
+// // Model Solution
+// function squareEvenNumbers(arr) {
+//   let sum = 0;
+//   for (let i = 0; i < arr.length; i++) {
+//     if (arr[i] % 2 === 0) {
+//       sum += arr[i] ** 2;
+//     }
+//   }
+//   return sum;
+// }
+
+// // Examples:
+
+// squareEvenNumbers([1, 2, 3, 4, 5]); // 20
+// squareEvenNumbers([1, 3, 5, 7]); // 0
+// squareEvenNumbers([5, 6, 7]); // 36
+
+// ---------- 021. Fundamentals: keys
+// Write a function called keys, which accepts an object and returns an array of all of the keys in the object.
+
+// Do not use the built in Object.keys() function!
+
+//My Solution
+// function keys(obj) {
+//   return Object.getOwnPropertyNames(obj);
+// }
+
+// Model Solution
+// function keys(obj) {
+//   debugger;
+//   let arr = [];
+//   for (let key in obj) {
+//     arr.push(key);
+//   }
+//   return arr;
+// }
+
+// // Examples:
+
+// var obj = { a: 1, b: 2, c: 3 };
+// keys(obj); // ["a", "b", "c"]
+
+// var obj2 = { first: 'Matt', last: 'Lane' };
+// keys(obj); // ["first", "last"]
+
+// var obj3 = {};
+// keys(obj); // []
+
+// ---------- 022. Fundamentals: values
+
+// Write a function called values, which accepts an object and returns an array of all of the values in the object.
+
+// Do not use the built in Object.values() function!
+
+//My Solution
+// function values(obj) {
+//   let array = [];
+//   for (var o in obj) {
+//     array.push(obj[o]);
+//   }
+//   return array;
+// }
+
+// // Model Solution
+// function values(obj) {
+//   let valuesArr = [];
+//   for (let key in obj) {
+//     valuesArr.push(obj[key]);
+//   }
+//   return valuesArr;
+// }
+
+// Examples: var obj = { a: 1, b: 2, c: 3 };
+// values(obj); // [1,2,3]
+
+// var obj2 = { first: 'Matt', last: 'Lane', isDogOwner: true };
+// values(obj2); // ["Matt", "Lane", true]
+
+// var obj3 = {};
+// values(obj3); // []
+
+// ---------- 023. Fundamentals: swapKeyAndValue
+
+// Write a function called swapKeyAndValue, which accepts an object and a key.
+
+// The function should return a new object with the given key and its value flipped, and all the other key/value pairs unchanged.
+
+// Solution 1
+// function swapKeyAndValue({ ...obj }, key) {
+//   if (obj.hasOwnProperty(key)) {
+//     const newKey = obj[key];
+//     obj[newKey] = key;
+//     delete obj[key];
+//   }
+//   return obj;
+// }
+
+// // Model Solution
+// function swapKeyAndValue(obj, swapKey) {
+//   debugger;
+//   let newObj = {};
+
+//   //Loop through old object
+//   for (let key in obj) {
+//     if (key === swapKey) {
+//       // The one key to be swapped with its value
+//       newObj[obj[key]] = key;
+//     } else {
+//       //The other keys and values just need to be copied over
+//       newObj[key] = obj[key];
+//     }
+//   }
+//   return newObj;
+// }
+
+// // Examples:
+
+// var instructor = { name: 'Elie', job: 'Instructor' };
+
+// swapKeyAndValue(instructor, 'name');
+// // {Elie: 'name', job: "Instructor"}
+
+// swapKeyAndValue(instructor, 'job');
+// // {name: "Elie", Instructor: 'job'}
+
+// ---------- 024. Fundamentals: entries
+
+// Write a function called entries, which accepts an object and returns an array of arrays of key-value pairs.
+
+// In other words, each sub-array is an "entry" in the object with two elements: the first element is the key, and the second element is the value.
+
+// Do not use the built in Object.entries() function!
+
+// //My Solution
+// function entries(obj) {
+//   let array = [];
+
+//   for (let key in obj) {
+//     array.push([key, obj[key]]);
+//   }
+
+//   return array;
+// }
+
+// //Model Solution
+// function entries(obj) {
+//   let container = [];
+//   for (let key in obj) {
+//     // push a sub-array of [key, obj] into the parent array
+//     container.push([key, obj[key]]);
+//   }
+//   return container;
+// }
+
+// // Examples:
+
+// var obj = { a: 1, b: 2, c: 3 };
+// entries(obj);
+// // [["a",1], ["b",2], ["c",3]]
+
+// var obj2 = { first: 'Matt', last: 'Lane', isDogOwner: true };
+// entries(obj2);
+// // [["first","Matt"], ["last","Lane"], ["isDogOwner",true]]
+
+// var obj3 = {};
+// entries(obj3); // []
+
+// ---------- 025. Fundamentals: countValues
+// Write a function called countValues which accepts an array and a number and returns the number of times that value appears in the array.
+
+//My Solution
+// function countValues(arr, num) {
+//   let count = 0;
+//   for (let i = 0; i < arr.length; i++) {
+//     if (arr[i] === num) {
+//       count++;
+//     }
+//   }
+//   return count;
+// }
+
+// // Model Solution
+// function countValues(arr, val) {
+//   let count = 0;
+//   for (let i = 0; i < arr.length; i++) {
+//     if (arr[i] === val) {
+//       count++;
+//     }
+//   }
+//   return count;
+// }
+
+// Examples: countValues([4, 1, 4, 2, 3, 4, 4], 4); // 4
+// countValues([4, 1, 4, 2, 3, 4, 4], 100); // 0
+// countValues([], 1); // 0
