@@ -168,158 +168,158 @@
 
 /*---------- 5. HIGHER ORDER FUNCTIONS ----------*/
 
-// function add(x, y) {
-//   return x + y;
-// }
+function add(x, y) {
+  return x + y;
+}
 
-// const subtract = function (x, y) {
-//   return x - y;
-// };
+const subtract = function (x, y) {
+  return x - y;
+};
 
-// function multiply(x, y) {
-//   return x * y;
-// }
+function multiply(x, y) {
+  return x * y;
+}
 
-// const divide = function (x, y) {
-//   return x / y;
-// };
+const divide = function (x, y) {
+  return x / y;
+};
 
-// const operations = [add, subtract, multiply, divide]; // function store in an array
+const operations = [add, subtract, multiply, divide]; // function store in an array
 
-// operations[1]; // show the function
+operations[1]; // show the function
 
-// console.log(operations[1](100, 4)); //96 -> subtract
+console.log(operations[1](100, 4)); //96 -> subtract
 
-// for (let func of operations) {
-// function store dynamically
-//   let result = func(30, 5);
-//   console.log(result);
-// } // will call all the function inside the array
+for (let func of operations) {
+  // function store dynamically
+  let result = func(30, 5);
+  console.log(result);
+} // will call all the function inside the array
 
 // by adding a function to an object we are creating a method.
-// const thing = {
-//   doSomething: multiply,
-// }; // function stored in an object
+const thing = {
+  doSomething: multiply,
+}; // function stored in an object
 
-// console.log(thing.doSomething(4, 5));
+console.log(thing.doSomething(4, 5));
 
 /*---------- 6. FUNCTIONS AS ARGUMENTS ----------*/
 
-//Ex 1->
-// function callTwice(func) {
-//   func();
-//   func();
-// }
+// Ex 1->
+function callTwice(func) {
+  func();
+  func();
+}
 
-// function laugh() {
-//   console.log('HAHAHAHAHAHAHAHAHHA');
-// }
+function laugh() {
+  console.log('HAHAHAHAHAHAHAHAHHA');
+}
 
-// callTwice(laugh);
+callTwice(laugh);
 
-//Ex 2 ->
-// function callThreeTimes(f) {
-//   f();
-//   f();
-//   f();
-// }
+// Ex 2 ->
+function callThreeTimes(f) {
+  f();
+  f();
+  f();
+}
 
-// function cry() {
-//   console.log("BOO HOO I'M SO SAD!");
-// }
+function cry() {
+  console.log("BOO HOO I'M SO SAD!");
+}
 
-// function rage() {
-//   console.log('I HATE EVERYTHING');
-// }
+function rage() {
+  console.log('I HATE EVERYTHING');
+}
 
-// function repeatNTimes(action, num) {
-//   for (let i = 0; i < num; i++) {
-//     action();
-//   }
-// } // I can use this function with the functions above
+function repeatNTimes(action, num) {
+  for (let i = 0; i < num; i++) {
+    action();
+  }
+} // I can use this function with the functions above
 
-// console.log(repeatNTimes(cry, 20));
+console.log(repeatNTimes(cry, 20));
 
-// function pickOnes(f1, f2) {
-//   let rand = Math.random();
-//   if (rand < 0.5) {
-//     f1();
-//   } else {
-//     f2();
-//   }
-// }
+function pickOnes(f1, f2) {
+  let rand = Math.random();
+  if (rand < 0.5) {
+    f1();
+  } else {
+    f2();
+  }
+}
 
 /*---------- 7. FUNCTIONS AS ARGUMENTS ----------*/
 
 // -> returning Functions
 
-//Ex 1 ->
-// function multiplyBy(num) {
-//   return function (x) {
-//     return x * num;
-//   };
-// }
+// Ex 1 ->
+function multiplyBy(num) {
+  return function (x) {
+    return x * num;
+  };
+}
 
-// const triple = multiplyBy(3);
-// const double = multiplyBy(2);
-// const halve = multiplyBy(0.5);
+const triple = multiplyBy(3);
+const double = multiplyBy(2);
+const halve = multiplyBy(0.5);
 
 // Ex 2 ->
 
-// function makeBetweenFunc(x, y) {
-//   return function (num) {
-//     return num >= x && num <= y;
-//   };
-// }
+function makeBetweenFunc(x, y) {
+  return function (num) {
+    return num >= x && num <= y;
+  };
+}
 
-// const isChild = makeBetweenFunc(0, 18);
-// const isNineties = makeBetweenFunc(1990, 1999);
-// const isNiceWeather = makeBetweenFunc(60, 79);
+const isChild = makeBetweenFunc(0, 18);
+const isNineties = makeBetweenFunc(1990, 1999);
+const isNiceWeather = makeBetweenFunc(60, 79);
 
 /*---------- 8. CALLBACKS ----------*/
 
-//Ex 1->
-// function grumpus() {
-//   alert('GAHH GO AWAY');
-// }
+// Ex 1->
+function grumpus() {
+  alert('GAHH GO AWAY');
+}
 
-// setTimeout(grumpus, 4000);
+setTimeout(grumpus, 4000);
 
-//Ex 2->
-// setTimeout(function () {
-//   alert('WELCOME');
-// }, 5000);
+// Ex 2->
+setTimeout(function () {
+  alert('WELCOME');
+}, 5000);
 
-// const btn = document.querySelector('button');
-// btn.addEventListener('click', grumpus);
+const btn = document.querySelector('button');
+btn.addEventListener('click', grumpus);
 
-// const btn = document.querySelector('button');
-// btn.addEventListener('click', function () {
-//   alert('WHY DID YOU CLICK ME');
-// });
+const btn = document.querySelector('button');
+btn.addEventListener('click', function () {
+  alert('WHY DID YOU CLICK ME');
+});
 
 /*---------- 9. HOSTING ----------*/
 
 // Ex 1 ->
-// var animal = 'Tapir';
-// console.log(animal);
+var animal = 'Tapir';
+console.log(animal);
 
-// console.log(animal);
+console.log(animal);
 
-//Ex 2 -> variables declaration with let are not hoisted like var.
+// Ex 2 -> variables declaration with let are not hoisted like var.
 
-// const shrimp = 'Harlenin ajsas';
-// console.log(shrimp);
+const shrimp = 'Harlenin ajsas';
+console.log(shrimp);
 
 // Ex 3 -> Functions declaration are hoisted
 
-// function howl() {
-//   console.log('AWOOOO');
-// }
-// howl();
+function howl() {
+  console.log('AWOOOO');
+}
+howl();
 
 // Ex 4 -> function declarations are  not hoisted - the variable is hoisted the function is not
-// hool;
-// var hool = function () {
-//   console.log('HOOOO HOOOOO');
-// };
+hool;
+var hool = function () {
+  console.log('HOOOO HOOOOO');
+};
