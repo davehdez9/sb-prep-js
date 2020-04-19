@@ -853,3 +853,456 @@ var arr = ['a', 'b', 'c'];
 // Examples: countValues([4, 1, 4, 2, 3, 4, 4], 4); // 4
 // countValues([4, 1, 4, 2, 3, 4, 4], 100); // 0
 // countValues([], 1); // 0
+
+// ---------- 026. Problem Solving: GeneratePairs
+
+// Write a function generatePairs that accepts an integer and generates an array containing the pairs of integers [a, b]. The pairs should be sorted by increasing values of a then increasing values of b.
+
+// function generatePairs(int) {
+//   let array = [];
+//   for (i = 0; i <= int; i++) {
+//     for (j = i; j <= int; j++) {
+//       array.push([i, j]);
+//     }
+//   }
+//   return array;
+// }
+
+// //Solution Model
+// function generatePairs(n) {
+//   var result = [];
+//   for (i = 0; i <= n; i++) {
+//     for (j = i; j <= n; j++) {
+//       result.push([i, j]);
+//     }
+//   }
+//   return result;
+// }
+
+// // Examples: generatePairs(3); // [ [0, 0], [0, 1], [0, 2], [0, 3], [1, 1], [1, 2], [1, 3], [2, 2], [2, 3], [3, 3] ]
+// // generatePairs(2); // [ [0, 0], [0, 1], [0, 2], [1, 1], [1, 2], [2, 2] ]
+// generatePairs(1); // [ [0, 0], [0, 1], [1,1]]
+// generatePairs(0); // [ [0, 0]]
+
+// ---------- 027. Problem Solving 1 : multiples
+
+// Implement a function called multiples that accepts two numbers: x and n.
+
+// The function should return the first n multiples of the number x.
+
+// Assume that x is a positive integer.
+
+// function multiples(x, n) {
+//   debugger;
+//   const multip = [];
+//   for (let i = 1; i <= n; i++) {
+//     multip.push(x * i);
+//   }
+//   return multip;
+// }
+
+// //Model Solution
+
+// Examples: multiples(3, 4); // [3, 6, 9, 12]
+// multiples(2, 5); // [2, 4, 6, 8, 10]
+
+// ---------- 028. Problem Solving 1 : pluck
+
+// Write a function called pluck, which takes an array of objects and the name of a key.
+
+// The function should return an array containing the value associated with that key for each object, or undefined if that key is not present in the object.
+
+// function pluck(arrObj, keyName) {
+//   // debugger;
+//   const array = [];
+//   for (var i = 0; i < arrObj.length; i++) {
+//     array.push(arrObj[i][keyName]);
+//   }
+
+//   return array;
+// }
+
+// // Examples:
+
+// pluck([{ name: 'Tim' }, { name: 'Matt' }, { name: 'Elie' }], 'name');
+// // ["Tim", "Matt", "Elie"]
+
+// pluck(
+//   [
+//     { name: 'Tim', isBoatOwner: true },
+//     { name: 'Matt', isBoatOwner: false },
+//     { name: 'Elie' },
+//   ],
+//   'isBoatOwner'
+// );
+// [true, false, undefined]
+
+// ---------- 029. Problem Solving 1 : twoHighest
+
+// Write a function called twoHighest that takes an array of numbers as its argument and returns the two highest numbers within the array.
+
+// The returned value should be an array in the following format: [secondHighest, highest]
+
+// The order of the numbers passed in could be any order.
+
+// Do not use the build in sort() method - the tests will fail!
+
+//My Solution
+// function twoHighest(arr) {
+//   let highest = 0;
+//   let secondHighest = 0;
+
+//   for (i = 0; i < arr.length; i++) {
+//     if (arr[i] >= highest) {
+//       secondHighest = highest;
+//       highest = arr[i];
+//     } else if (arr[i] >= secondHighest && arr[i] < highest) {
+//       secondHighest = arr[i];
+//     }
+//   }
+//   return [secondHighest, highest];
+// }
+
+//Model Solution
+/**
+ * This approach takes 1 single sweep of the array with two pointers.
+ *  The highest and secondHighest are initialized to negative Infinity
+ *  so that any numbers in the array will be eligible. Then set the
+ *  secondHighest first, and if it's greater than the highest, swap.
+ */
+// function twoHighest(nums) {
+//   // initialize both to the lowest possible values
+//   let highest = -Infinity;
+//   let secondHighest = -Infinity;
+
+//   for (let num of nums) {
+//     // set secondHighest first
+//     if (num > secondHighest) {
+//       secondHighest = num;
+//     }
+//     // see if we need to set highest
+//     if (secondHighest >= highest) {
+//       // if so, swap
+//       let tmp = highest;
+//       highest = secondHighest;
+//       secondHighest = tmp;
+//     }
+//   }
+
+//   return [secondHighest, highest];
+// }
+
+// Examples: twoHighest([1, 2, 10, 8]); // [8, 10]
+// twoHighest([6, 1, 9, 10, 4]); // [9,10]
+// twoHighest([4, 25, 3, 20, 19, 5]); // [20,25]
+// twoHighest([1, 2, 2]); // [2, 2];
+
+// ---------- 030. Problem Solving 1 : minMaxKeyInObject
+// Write a function called minMaxKeyInObject that accepts an object with numeric keys.*
+
+// The function should return an array with the following format: [lowestKey, highestKey]
+// function minMaxKeyInObject(obj) {
+//   let arrayKey = Object.keys(obj);
+//   return [Math.min(...arrayKey), Math.max(...arrayKey)];
+// }
+
+// //Model Solution
+// /**
+//  * Standard approach looping through object with two pointers
+//  */
+// function minMaxKeyInObject(obj) {
+//   let minKey = Infinity;
+//   let maxKey = -Infinity;
+
+//   for (let key in obj) {
+//     // convert key to number and compare
+//     let keyNum = +key; // this is shorthand for Number(key)
+//     if (keyNum < minKey) {
+//       minKey = keyNum;
+//     }
+//     if (keyNum > maxKey) {
+//       maxKey = keyNum;
+//     }
+//   }
+
+//   return [minKey, maxKey];
+// }
+
+// /**
+//  * Advanced approach. Declarative 1-liner using Object.keys
+//  *  and Array spread operator (...)
+//  */
+// function minMaxKeyInObjectDeclarative(obj) {
+//   return [Math.min(...Object.keys(obj)), Math.max(...Object.keys(obj))];
+// }
+
+// // Examples:
+
+// minMaxKeyInObject({ 2: 'a', 7: 'b', 1: 'c', 10: 'd', 4: 'e' });
+// [1, 10]
+
+// minMaxKeyInObject({ 1: 'Elie', 4: 'Matt', 2: 'Tim' });
+// [1, 4]
+
+// Remember all object keys are strings, even if they hold numeric values.
+
+// ---------- 031. Problem Solving 1 : stringFromObject
+
+// Write a function called stringFromObject that generates a string from an object's key/value pairs.
+
+// The format should be "key = value, key = value".
+
+// Each key/value pair should be separated by a comma and space except for the last pair.
+
+// function stringFromObject(obj) {
+//   debugger;
+//   let result = '';
+//   for (let key in obj) {
+//     result += `${key} = ${obj[key]}, `;
+//   }
+//   return result.slice(0, -2);
+// }
+
+//Model Solution
+/**
+ * Loop thru keys building a string with ' = ' between
+ *  key and value and ', ' between each entry,
+ *  then slice off the comma and space at the end
+ */
+// function stringFromObject(obj) {
+//   let finalStr = '';
+//   for (let key in obj) {
+//     finalStr += key + ' = ' + obj[key] + ', ';
+//   }
+//   return finalStr.slice(0, -2);
+// }
+
+/**
+ * This is a very advanced approach that you might see in production code.
+ *  Get entries of an object (an array of arrays with [key, value]), then
+ *  turn it into an array of strings like ['key = value', 'key = value'],
+ *  then finally join the array on comma + space
+ */
+// function stringFromObjectDeclarative(obj) {
+//   return Object.entries(obj)
+//     .map((pair) => pair.join(' = '))
+//     .join(', ');
+// }
+
+// Examples:
+
+// stringFromObject({ a: 1, b: '2' });
+// // "a = 1, b = 2"
+
+// stringFromObject({ name: 'Elie', job: 'Instructor', isCatOwner: false });
+// // "name = Elie, job = Instructor, isCatOwner = false"
+
+// stringFromObject({});
+
+// ---------- 032. Problem Solving 1 : queryString
+// A query string, is a way to send data in an HTTP request, you may see it in a URL starting with a question mark.
+
+// Write a function called toQueryString, which accepts an object and returns a string with each key and value separated by a = and each pair separated by a &. If the value is an array, add another pair to the string with each value
+
+//My Solution
+// function toQueryString(obj) {
+//   // debugger;
+//   let str = [];
+//   for (let key in obj) {
+//     if (Array.isArray(obj[key]) === true) {
+//       for (let i = 0; i < obj[key].length; i++) {
+//         str.push(`${key}=${obj[key][i]}`);
+//       }
+//     } else {
+//       str.push(`${key}=${obj[key]}`);
+//     }
+//   }
+//   return str.join('&');
+// }
+
+//Model Solution
+// function toQueryString(obj) {
+//   // debugger;
+//   var str = '';
+//   for (let key in obj) {
+//     if (Array.isArray(obj[key])) {
+//       for (var i = 0; i < obj[key].length; i++) {
+//         str += '&' + key + '=' + obj[key][i];
+//       }
+//     } else {
+//       str += '&' + key + '=' + obj[key];
+//     }
+//   }
+//   return str.slice(1);
+// }
+
+// // Examples:
+
+// toQueryString({}); // ""
+// toQueryString({ bar: [2, 3], foo: 1 }); // "bar=2&bar=3&foo=1"
+// toQueryString({ name: 'Elie', nums: [1, 2, 3, 4] }); // "name=Elie&nums=1&nums=2&nums=3&nums=4"
+
+// ---------- 033. Problem Solving 1 : countNumbers
+// Write a function called countNumbers, which accepts an array of strings. The function should return a count of the number of strings in the array that can be successfully converted into a number. For example, the string "1" can be successfully converted to the number 1, but the string "hello" cannot be converted into a number.
+
+//My Solution
+// const isNum = (n) => !isNaN(parseInt(n));
+// const countNumbers = (arr) => arr.filter(isNum).length;
+
+//Model Solution
+// function countNumbers(arr) {
+//   // debugger;
+//   let count = 0;
+//   for (let val of arr) {
+//     let valToNumber = parseInt(val);
+//     let isValNan = isNaN(valToNumber);
+//     if (isValNan === false) {
+//       count++;
+//     }
+//   }
+//   return count;
+// }
+
+//Another Option
+// function countNumbers(arr) {
+//   debugger;
+//   //return an array of values that are not NaN when converted and calculate the length
+//   return arr.filter((val) => !isNaN(parseInt(val))).length;
+// }
+
+// // Examples:
+
+// countNumbers(['a', 'b', '3', 'awesome', '4']); // 2
+// countNumbers(['32', '55', 'awesome', 'test', '100']); // 3
+// countNumbers([]); // 0
+// countNumbers(['4', '1', '0', 'NaN']); // 3
+// countNumbers(['7', '12', 'a', '', '6', '8', ' ']); // 4
+
+// ---------- 034. Problem Solving 1 : totalCaps
+// Write a function called totalCaps, which accepts an array of strings and returns the total number of capitals in each of the strings. Do not convert the array into a string.
+
+// function totalCaps(arr) {
+//   let capCount = 0;
+
+//   arr.forEach((word) => {
+//     word.split('').forEach((char) => {
+//       if (char === char.toUpperCase()) {
+//         capCount += 1;
+//       }
+//     });
+//   });
+//   return capCount;
+// }
+
+//Model Solution 1
+// function totalCaps(arr) {
+//   // debugger;
+//   var count = 0;
+//   for (var i = 0; i < arr.length; i++) {
+//     for (var j = 0; j < arr[i].length; j++) {
+//       if (arr[i].charCodeAt(j) > 64 && arr[i].charCodeAt(j) <= 90) {
+//         count++;
+//       }
+//     }
+//   }
+//   return count;
+// }
+
+//Model Solution 2
+// function countCaps(str) {
+//   debugger;
+//   const caps = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+//   let count = 0;
+//   for (let char of str) {
+//     if (caps.includes(char)) {
+//       count++;
+//     }
+//   }
+//   return count;
+// }
+
+// function totalCaps(arr) {
+//   debugger;
+//   let finalCount = 0;
+//   for (let str of arr) {
+//     finalCount += countCaps(str);
+//   }
+//   return finalCount;
+// }
+
+// Examples:
+
+// totalCaps(['AwesomE', 'ThIngs', 'hAppEning', 'HerE']); // 8
+// totalCaps(['Elie', 'Matt', 'Tim']); // 3
+// totalCaps(['hello', 'world']); // 0
+
+// ---------- 035. Problem Solving 1 : rankingSystem
+
+// Given an array of unique numbers, return a new array of rankings of the original array. For example, if your input array is [10, 5, 20], the output should be [2, 3, 1], since 10 is the second largest number, 5 is the third largest, and 20 is the largest.
+
+// function rankings(arr) {
+//   // add whatever parameters you deem necessary....good luck!
+//   var sorted = arr.slice().sort(function (a, b) {
+//     return b - a;
+//   });
+//   var ranks = arr.slice().map(function (v) {
+//     return sorted.indexOf(v) + 1;
+//   });
+//   return ranks;
+// }
+
+//Model Solution
+function rankings(arr) {
+  // debugger;
+  let rankingArr = [];
+  for (let i = 0; i < arr.length; i++) {
+    let rank = 1;
+    for (let j = 0; j < arr.length; j++) {
+      if (arr[j] > arr[i]) {
+        rank++;
+      }
+    }
+    rankingArr.push(rank);
+  }
+  return rankingArr;
+}
+
+Examples: rankings([10, 5, 20]); // [2, 3, 1]
+rankings([6, 8, 1, 12, 4, 3, 9]); // [4, 3, 7, 1, 5, 6, 2]
+rankings([100]); // [1]
+rankings([4, 2, 3, 1]); // [1, 3, 2, 4]
+
+function generatePairs(num) {
+  let result = [];
+  let pair = [];
+  // if param is 2, output is [0,0], [0,1], [0,2], [1,1], [1,2], [2,2]
+  if (num === 0) {
+    result = [[0, 0]];
+  } else {
+    for (let i = 0; i < num; i++) {
+      pair.push(i);
+      pair.push(i);
+      result.push(pair);
+      pair = [];
+
+      pair.push(i);
+      pair.push(i + 1);
+      result.push(pair);
+      pair = [];
+
+      // pair.push(i + 1);
+      // pair.push(i + 1);
+      // result.push(pair);
+      // pair = [];
+    }
+    pair.push(num);
+    pair.push(num);
+    result.push(pair);
+  }
+
+  console.log(result);
+  console.log(pair);
+}
+
+// generatePairs(0);
+generatePairs(2);
