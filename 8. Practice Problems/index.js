@@ -1252,57 +1252,57 @@ var arr = ['a', 'b', 'c'];
 // }
 
 //Model Solution
-function rankings(arr) {
-  // debugger;
-  let rankingArr = [];
-  for (let i = 0; i < arr.length; i++) {
-    let rank = 1;
-    for (let j = 0; j < arr.length; j++) {
-      if (arr[j] > arr[i]) {
-        rank++;
-      }
-    }
-    rankingArr.push(rank);
-  }
-  return rankingArr;
-}
+// function rankings(arr) {
+//   // debugger;
+//   let rankingArr = [];
+//   for (let i = 0; i < arr.length; i++) {
+//     let rank = 1;
+//     for (let j = 0; j < arr.length; j++) {
+//       if (arr[j] > arr[i]) {
+//         rank++;
+//       }
+//     }
+//     rankingArr.push(rank);
+//   }
+//   return rankingArr;
+// }
 
-Examples: rankings([10, 5, 20]); // [2, 3, 1]
-rankings([6, 8, 1, 12, 4, 3, 9]); // [4, 3, 7, 1, 5, 6, 2]
-rankings([100]); // [1]
-rankings([4, 2, 3, 1]); // [1, 3, 2, 4]
+// Examples: rankings([10, 5, 20]); // [2, 3, 1]
+// rankings([6, 8, 1, 12, 4, 3, 9]); // [4, 3, 7, 1, 5, 6, 2]
+// rankings([100]); // [1]
+// rankings([4, 2, 3, 1]); // [1, 3, 2, 4]
 
-function generatePairs(num) {
-  let result = [];
-  let pair = [];
-  // if param is 2, output is [0,0], [0,1], [0,2], [1,1], [1,2], [2,2]
-  if (num === 0) {
-    result = [[0, 0]];
-  } else {
-    for (let i = 0; i < num; i++) {
-      pair.push(i);
-      pair.push(i);
-      result.push(pair);
-      pair = [];
+// function generatePairs(num) {
+//   let result = [];
+//   let pair = [];
+//   // if param is 2, output is [0,0], [0,1], [0,2], [1,1], [1,2], [2,2]
+//   if (num === 0) {
+//     result = [[0, 0]];
+//   } else {
+//     for (let i = 0; i < num; i++) {
+//       pair.push(i);
+//       pair.push(i);
+//       result.push(pair);
+//       pair = [];
 
-      pair.push(i);
-      pair.push(i + 1);
-      result.push(pair);
-      pair = [];
+//       pair.push(i);
+//       pair.push(i + 1);
+//       result.push(pair);
+//       pair = [];
 
-      // pair.push(i + 1);
-      // pair.push(i + 1);
-      // result.push(pair);
-      // pair = [];
-    }
-    pair.push(num);
-    pair.push(num);
-    result.push(pair);
-  }
+//       // pair.push(i + 1);
+//       // pair.push(i + 1);
+//       // result.push(pair);
+//       // pair = [];
+//     }
+//     pair.push(num);
+//     pair.push(num);
+//     result.push(pair);
+//   }
 
-  console.log(result);
-  console.log(pair);
-}
+//   console.log(result);
+//   console.log(pair);
+// }
 
-// generatePairs(0);
-generatePairs(2);
+// // generatePairs(0);
+// generatePairs(2);
