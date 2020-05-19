@@ -1,6 +1,6 @@
 //1 calculateAverage
 
-/* Write a function call calculateAverage which accepts an array of numbers. The function should return the average or mean of all numbers in the array. If the arrays if empty, return 0.*/
+/* Write a function call calculateAverage which accepts an array of numbers. The function should return the average or mean of all numbers in the array. If the arrays is empty, return 0.*/
 
 function calculateAverage(arr) {
   let total = 0;
@@ -65,24 +65,30 @@ function isPangram(str) {
   let strLettersOnly = '';
   let lettersUsed = '';
 
+  // loop through original string, and add all characters that match alphabet to new string, strLettersOnly.
+  // this way we create a new string without spaces, punctuation, etc
   for (let i = 0; i < str.length; i++) {
     if (alphabet.includes(str[i])) {
       strLettersOnly = strLettersOnly.concat(str[i]);
     }
   }
 
+  // loop through the strLettersOnly string that is created above
   for (let j = 0; j < strLettersOnly.length; j++) {
     let currentLetter = strLettersOnly[j];
 
-    if (lettersUsed.includes(currentLetter) !== true) {
+    // if the character that we're looping through is NOT in the lettersUsed string, add that letter to the lettersUsed string
+    if (lettersUsed.includes(currentLetter) === false) {
       lettersUsed = lettersUsed.concat(currentLetter);
     }
   }
 
-  console.log(lettersUsed);
+  // console.log(lettersUsed);
 
+  // if the string lettersUsed is the same size as the string alphabet, then all letters are used, and we can return true
   if (lettersUsed.length === alphabet.length) {
     return true;
+    // else if the string lettersUsed is not the same size as the string alphabet, we aren't using all letters, so we return false
   } else {
     return false;
   }
@@ -101,24 +107,31 @@ function strLetterCount(word) {
   let finalString = '';
   let placeholder = '';
 
+  // split into an array
   let chars = word.split('');
+
+  // create an empty object
   let lettersCount = {};
 
+  // loop through the array that we created
+  // creating an object that has a key for each letter, and a value for the number of times the letter shows up
   for (let i = 0; i < chars.length; i++) {
     if (lettersCount[chars[i]] === undefined) {
       lettersCount[chars[i]] = 0;
     }
     lettersCount[chars[i]]++;
   }
+  console.log('lettersCount:', lettersCount);
 
+  // loop through the lettersCount object, to create a string that returns the info from object, formatted as a string
   for (let i in lettersCount) {
-    console.log(i + ' = ' + lettersCount[i]);
+    // reassign placeholder variable to a key/value pair using a template literal
     placeholder = `${i}${lettersCount[i]}`;
-    console.log(placeholder);
+    // add this key/value pair string to our finalString
     finalString = finalString.concat(placeholder);
   }
 
-  console.log(finalString);
+  // console.log(finalString);
 
   return finalString;
 }
